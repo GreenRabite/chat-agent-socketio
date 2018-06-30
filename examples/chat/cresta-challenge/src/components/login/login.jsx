@@ -25,8 +25,8 @@ class Login extends Component {
         client: data.client
       });
     });
-    this.socket.on('disconnect', () => {
-      console.log(`${this.socket.id} has been disconnected`);
+    this.socket.on('disconnect', (data) => {
+      console.log(`${data} has been disconnected`);
     });
   }
 

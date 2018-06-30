@@ -15,8 +15,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Chatroom
 
-let client = 0;
-let agent = 0;
 let agentArr = [];
 let clientObj = {};
 
@@ -26,17 +24,34 @@ io.on('connection', (socket) => {
 
   // Emits a user count to the person establish a connection
   io.emit('Receive User Count', {
-    agent,
-    client
+    agent: agentArr.length,
+    client: Object.keys(clientObj)? Object.keys(clientObj).length : 0
   });
 
+  // Login screen, when a user chooses someone
   socket.on('User Chosen', (data) => {
-    agent = data.agent;
-    client = data.client;
     if (data.role === 'agent'){ agentArr.push(data.socketId);}
     if (data.role === 'client'){ clientObj[data.socketId]=data.username;}
     console.log(agentArr);
     console.log(clientObj);
+  });
+
+  // When a user disconnect
+  socket.on('ClientRoom', () => {
+    console.log(socket.id);
+    console.log('Join Room ID:',socket.id);
+    socket.join(`${socket.id}`);
+  });
+
+  socket.on('JoinClients', () => {
+    console.log("joinclients",clientObj);
+    if (Object.keys(clientObj) !== undefined) {
+      Object.keys(clientObj).forEach(id => {
+        console.log("room id is",id);
+        socket.join(id);
+      });
+      io.emit('ReceiveClients', clientObj);
+    }
   });
 
   // when the client emits 'new message', this listens and executes
@@ -50,7 +65,8 @@ io.on('connection', (socket) => {
 
   socket.on('SEND_MESSAGE', function(data){
       console.log("receive");
-      io.emit('RECEIVE_MESSAGE', data);
+      console.log(socket.id);
+      io.sockets.in(`${data.room}`).emit('RECEIVE_MESSAGE', data);
     });
 
   // when the client emits 'add user', this listens and executes
@@ -86,15 +102,11 @@ io.on('connection', (socket) => {
   });
 
   // when the user disconnects.. perform this
-  socket.on('disconnect', () => {
-    if (addedUser) {
-      --numUsers;
-
-      // echo globally that this client has left
-      socket.broadcast.emit('user left', {
-        username: socket.username,
-        numUsers: numUsers
-      });
-    }
+  socket.on('disconnect', (data) => {
+    console.log("Socket closed:", socket.id);
+    delete clientObj[socket.id];
+    if(agentArr.includes(socket.id)){agentArr.pop();}
+    console.log(agentArr);
+    console.log(clientObj);
   });
 });

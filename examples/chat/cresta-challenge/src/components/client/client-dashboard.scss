@@ -1,0 +1,38 @@
+$dark_blue : #0D274F;
+$light_blue : #2262AE;
+$chat_gray : #ECF2F9;
+
+.client-chat-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 448px;
+  height: 80%;
+  background: $chat_gray;
+  border-radius: 15px 15px 0 0;
+}
+
+.client-header{
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin-bottom: -15px;
+  p{
+    font-size: 25px;
+    font-weight: 300;
+  }
+}
+
+.client-chat{
+  height: 600px;
+
+}
+
+.client-input{
+  textarea{
+    width: 442px;
+    resize: vertical;
+    border: none;
+  }
+}
