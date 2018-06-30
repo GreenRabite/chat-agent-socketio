@@ -15,10 +15,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Chatroom
 
-var numUsers = 0;
+let client = 0;
+let agent = 0;
+let agentArr = [];
+let clientObj = {};
 
 io.on('connection', (socket) => {
   var addedUser = false;
+  console.log("Socket ID is:",socket.id);
+
+  // Emits a user count to the person establish a connection
+  io.emit('Receive User Count', {
+    agent,
+    client
+  });
+
+  socket.on('User Chosen', (data) => {
+    agent = data.agent;
+    client = data.client;
+    if (data.role === 'agent'){ agentArr.push(data.socketId);}
+    if (data.role === 'client'){ clientObj[data.socketId]=data.username;}
+    console.log(agentArr);
+    console.log(clientObj);
+  });
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', (data) => {
@@ -28,6 +47,11 @@ io.on('connection', (socket) => {
       message: data
     });
   });
+
+  socket.on('SEND_MESSAGE', function(data){
+      console.log("receive");
+      io.emit('RECEIVE_MESSAGE', data);
+    });
 
   // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {

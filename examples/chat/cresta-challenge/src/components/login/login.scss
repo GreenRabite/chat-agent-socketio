@@ -1,0 +1,64 @@
+$dark_blue : #0D274F;
+$light_blue : #2262AE;
+$chat_gray : #ECF2F9;
+
+body{
+  background: linear-gradient(to right, $dark_blue, $light_blue) no-repeat center center fixed;
+  background-size: cover;
+}
+
+#login-screen-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 33%;
+  height: 50%;
+  background: $chat_gray;
+  border-radius: 15px 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  h3 {
+    text-align: center;
+    margin-top: 70px;
+  }
+}
+
+.avatars{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 60px;
+  margin-right: 60px;
+  h4{
+    text-align: center;
+  }
+  img {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+  }
+}
+
+#client-info {
+  display: flex;
+  justify-content: space-around;
+  input, button{
+    border: 0;
+    height: 40px;
+  }
+  input{
+    border-radius: 15px 0 0 15px;
+    text-indent: 20px;
+  }
+  input:focus{
+    outline: none;
+    box-shadow: 0px 0px 0px 1px $dark_blue;
+  }
+  button{
+    border-radius: 0 15px 15px 0;
+    background: $dark_blue;
+    color: white;
+    width: 100px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Dashboard from './components/dashboard';
+import Login from './components/login/login';
 
 class App extends Component {
   render() {
-    return (
-      <Dashboard/>
+    return(
+      <Login/>
     );
   }
 }
