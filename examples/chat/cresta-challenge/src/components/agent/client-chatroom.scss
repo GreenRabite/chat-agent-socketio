@@ -3,36 +3,34 @@ $light_blue : #2262AE;
 $chat_gray : #ECF2F9;
 $off_white : #F9FAFE;
 
-.client-chat-container{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.agent-chat-container{
   width: 448px;
   height: 80%;
   background: $chat_gray;
   border-radius: 15px 15px 0 0;
+  margin-left: 30px;
 }
 
-.client-header{
+.agent-header{
   display: flex;
   justify-content: space-around;
   position: relative;
   margin-bottom: -15px;
   p{
+    text-transform: uppercase;
     font-size: 25px;
     font-weight: 300;
   }
 }
 
-.client-chat{
+.agent-chat{
   height: 600px;
   overflow-y: scroll;
   overflow-x: auto;
   overflow-wrap: break-word;
 }
 
-.client-input{
+.agent-input{
   textarea{
     width: 444px;
     resize: vertical;
@@ -41,7 +39,7 @@ $off_white : #F9FAFE;
   }
 }
 
-.client-msg, .agent-msg{
+.ag-client-msg, .ag-agent-msg{
   display: inline-block;
   max-width: 362px;
   padding: 7px 12px 8px 12px;
@@ -49,23 +47,25 @@ $off_white : #F9FAFE;
   font-family: 'Open Sans', sans-serif;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05);
 }
-.agent-msg{
+
+.ag-client-msg{
   text-align: left;
   margin-left: 10px;
   border-radius: 15px;
 }
-.client-msg{
+.ag-agent-msg{
   align: right;
   border-radius: 15px;
   color: white;
 }
 
-.client-msg-container{
+.ag-agent-msg-container{
   display: flex;
   justify-content: flex-end;
   margin-right: 15px;
 }
-.agent-msg-container{
+
+.ag-client-msg-container{
   display: flex;
   justify-content: flex-start;
   margin-left: 15px;

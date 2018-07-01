@@ -1,0 +1,31 @@
+$sky_blue : #D5E6F4;
+$teal_blue : #3D9CC4;
+
+#nav-footer{
+  position: fixed;
+  right:0;
+  top:0;
+  bottom:0;
+  width: 200px;
+  background: white;
+  margin-left: 100px;
+}
+
+#nav-footer:hover{
+  margin-left: 0;
+}
+
+.client-item{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+  background-color: $sky_blue;
+  cursor: pointer;
+}
+
+.client-item:hover{
+  background-color: $teal_blue;
+  transition: 0.3s;
+}

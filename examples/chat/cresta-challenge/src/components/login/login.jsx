@@ -9,7 +9,11 @@ class Login extends Component {
     super(props);
     this.state = {
       role: "",
-      username: ""
+      username: "",
+      colors: ['#3D9CC4', '#24659A', '#98C3E7', '#D5E6F4',
+               '#CB6080', '#A33B5A', '#E098AE', '#F7E2E8',
+               '#966AB8', '#6E3A96', '#B188D1', '#EAE0F2',
+               '#0AA693', '#06786A', '#55C4B6', '#B7EAE3']
     };
     this.userSelect = this.userSelect.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -74,6 +78,7 @@ class Login extends Component {
   }
 
   render() {
+    const color = this.state.colors[Math.floor(Math.random()*this.state.colors.length)];
     const agentImg = this.state.agent === 0 ?
       <div>
         <img onClick={(e)=>this.userSelect("agent")} src="https://cdn1.iconfinder.com/data/icons/e-commerce-64/683/ECOMMERCE_Icons_Service-512.png"/>
@@ -115,7 +120,9 @@ class Login extends Component {
       );
     }else if (this.state.role === 'client') {
       return(
-        <ClientDashboard socket={this.socket} username={this.state.username} />
+        <ClientDashboard socket={this.socket}
+                         username={this.state.username}
+                         color={color}/>
       );
     }
   }

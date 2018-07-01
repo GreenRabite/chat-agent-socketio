@@ -1,7 +1,7 @@
 import React from 'react';
-import './client-dashboard.css';
+import './client-chatroom.css';
 
-class ClientDashboard extends React.Component{
+class ClientChatroom extends React.Component{
   constructor(props){
     super(props);
     this.socket = this.props.socket;
@@ -14,12 +14,9 @@ class ClientDashboard extends React.Component{
            message: '',
            messages: []
          };
-         console.log(this.state.messages);
-
   }
 
   componentDidMount(){
-    this.socket.emit('ClientRoom',{});
     this.socket.on('RECEIVE_MESSAGE', (data)=>{
            this.addMessage(data);
        });
@@ -44,8 +41,8 @@ class ClientDashboard extends React.Component{
     e.preventDefault();
     this.socket.emit('SEND_MESSAGE', {
                 message: this.state.message,
-                room: this.socket.id,
-                sender: 'client'
+                room: this.props.roomId,
+                sender: 'agent'
             });
             this.setState({message: ''});
   }
@@ -62,21 +59,21 @@ class ClientDashboard extends React.Component{
     };
     let messages = this.state.messages.map(message=>{
       if (message[1] === 'client') {
-        return <div className="client-msg-container"><div className="messages-client client-msg" style={divStyle}>{`${message[0]}\n`}</div></div>;
+        return <div className="ag-client-msg-container"><div className="messages-agent ag-client-msg" style={{backgound:"white"}}>{`${message[0]}\n`} </div></div>;
       }else {
-        return <div className="agent-msg-container"><div className="messages-client agent-msg" style={{backgound:"white"}}>{`${message[0]}\n`}</div></div>;
+        return <div className="ag-agent-msg-container"><div className="messages-agent ag-agent-msg" style={divStyle}>{`${message[0]}\n`}</div></div>;
       }
     });
     return(
-      <div className="client-chat-container">
-        <div className="client-header">
-          <p>AGENT</p>
+      <div className="agent-chat-container">
+        <div className="agent-header">
+          <p>{this.props.username}</p>
         </div>
         <hr/>
-        <div className="client-chat">
+        <div className="agent-chat">
           {messages}
         </div>
-        <div className="client-input">
+        <div className="agent-input">
           <form onSubmit={this.handleSubmit}>
             <textarea rows="6"
                       onChange={this.handleUpdate("message")}
@@ -90,4 +87,4 @@ class ClientDashboard extends React.Component{
   }
 }
 
-export default ClientDashboard;
+export default ClientChatroom;

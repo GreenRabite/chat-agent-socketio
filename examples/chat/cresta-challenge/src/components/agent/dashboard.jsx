@@ -1,5 +1,8 @@
 import React from 'react';
 import ConversationContainer from '../conversation/conversation_container';
+import ClientChatroom from './client_chatroom';
+import NavFooter from './nav_footer';
+import './dashboard.css';
 
 class Dashboard extends React.Component{
   constructor(props){
@@ -13,7 +16,11 @@ class Dashboard extends React.Component{
     this.state = {
            message: '',
            messages: [],
-           clients: {}
+           clients: {},
+           colors: ['#3D9CC4', '#24659A', '#98C3E7', '#D5E6F4',
+                    '#CB6080', '#A33B5A', '#E098AE', '#F7E2E8',
+                    '#966AB8', '#6E3A96', '#B188D1', '#EAE0F2',
+                    '#0AA693', '#06786A', '#55C4B6', '#B7EAE3']
          };
   }
 
@@ -25,9 +32,9 @@ class Dashboard extends React.Component{
         clients: data
       });
     });
-    this.socket.on('RECEIVE_MESSAGE', (data)=>{
-           this.addMessage(data);
-       });
+   this.socket.on('NewClients',()=>{
+     this.socket.emit('JoinClients',{});
+   });
   }
 
   addMessage(data){
@@ -48,7 +55,8 @@ class Dashboard extends React.Component{
     e.preventDefault();
     this.socket.emit('SEND_MESSAGE', {
                 message: this.state.message,
-                room: Object.keys(this.state.clients)[0]
+                room: Object.keys(this.state.clients)[0],
+                sender: 'agent'
             });
             this.setState({message: ''});
   }
@@ -57,25 +65,25 @@ class Dashboard extends React.Component{
     let messages = this.state.messages.map(message=>{
       return <li>{`${message}`}</li>;
       });
+    const color = this.state.colors[Math.floor(Math.random()*this.state.colors.length)];
+    const chatrooms = [];
+    const clients = this.state.clients;
+    for(const roomId in clients){
+      if (Object.prototype.hasOwnProperty.call(clients,roomId)) {
+        chatrooms.push(
+          <ClientChatroom socket={this.socket}
+                          roomId={roomId}
+                          username={this.state.clients[roomId]}
+                          color={this.state.colors[Math.floor(
+                                  Math.random()*this.state.colors.length)]}/>
+        );
+      }
+    }
     return(
-      <div className="client-chat-container">
-        <div className="client-header">
-          <p>CLIENT</p>
-        </div>
-        <hr/>
-        <div className="client-chat">
-          <ul>
-            {messages}
-          </ul>
-        </div>
-        <div>
-          <form>
-            <label> Message:
-              <input type="text" onChange={this.handleUpdate("message")} value={this.state.message}/>
-            </label>
-            <button onClick={this.handleSubmit}>Submit</button>
-          </form>
-        </div>
+      <div id="dashboard">
+        {chatrooms}
+        <NavFooter socket={this.socket}
+                    clients={this.state.clients}/>
       </div>
     );
   }

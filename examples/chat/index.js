@@ -10,6 +10,8 @@ server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });
 
+let numUsers = 0;
+
 // Routing
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -36,18 +38,21 @@ io.on('connection', (socket) => {
     console.log(clientObj);
   });
 
-  // When a user disconnect
+  // When client login, join their special room
   socket.on('ClientRoom', () => {
     console.log(socket.id);
     console.log('Join Room ID:',socket.id);
     socket.join(`${socket.id}`);
+    io.emit('ReceiveClients', clientObj);
+    io.emit('NewClients',{});
   });
 
+  // Agents use to join room with clients
   socket.on('JoinClients', () => {
     console.log("joinclients",clientObj);
     if (Object.keys(clientObj) !== undefined) {
       Object.keys(clientObj).forEach(id => {
-        console.log("room id is",id);
+        console.log("Agen joined: Room ID:",id);
         socket.join(id);
       });
       io.emit('ReceiveClients', clientObj);
@@ -108,5 +113,6 @@ io.on('connection', (socket) => {
     if(agentArr.includes(socket.id)){agentArr.pop();}
     console.log(agentArr);
     console.log(clientObj);
+    io.emit('ReceiveClients', clientObj);
   });
 });
