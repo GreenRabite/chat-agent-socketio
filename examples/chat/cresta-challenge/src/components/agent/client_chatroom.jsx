@@ -11,6 +11,8 @@ class ClientChatroom extends React.Component{
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.grabSuggestions = this.grabSuggestions.bind(this);
     this.handleSuggestion = this.handleSuggestion.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
     this.setTimer = this.setTimer.bind(this);
     this.state = {
            username: this.props.username,
@@ -114,6 +116,29 @@ class ClientChatroom extends React.Component{
     this.setState({
       message: e.target.innerText
     });
+    setTimeout(()=>{
+      const input = document.querySelector(`#agent-chat-container-${this.props.roomId} .agent-input textarea`);
+      console.log(input);
+      input.focus();
+    },0);
+  }
+
+  handleFocus(e){
+    const container = document.querySelector(`#agent-chat-container-${this.props.roomId}`);
+    const input = container.querySelector(`.agent-input`);
+    const name = container.querySelector(`#agent-${this.props.roomId}`);
+    container.classList.add('focus');
+    input.classList.add('text-focus');
+    name.classList.add('name-focus');
+  }
+
+  handleBlur(){
+    const container = document.querySelector(`#agent-chat-container-${this.props.roomId}`);
+    const input = container.querySelector(`.agent-input`);
+    const name = container.querySelector(`#agent-${this.props.roomId}`);
+    container.classList.remove('focus');
+    input.classList.remove('text-focus');
+    name.classList.remove('name-focus');
   }
 
   render(){
@@ -129,12 +154,15 @@ class ClientChatroom extends React.Component{
     });
     let speechbubbles = this.state.suggestions.map(suggestion =>{
       return <div className='suggestion-item'
-                  onClick={this.handleSuggestion}>{suggestion}</div>;
+                  onClick={this.handleSuggestion}><span>{suggestion}</span></div>;
     });
     return(
-      <div className="agent-chat-container">
+      <div onFocus={this.handleFocus}
+           onBlur={this.handleBlur}
+           className="agent-chat-container"
+           id={`agent-chat-container-${this.props.roomId}`}>
         <div className="agent-header">
-          <p>{this.props.username}</p>
+          <p id={`agent-${this.props.roomId}`}>{this.props.username}</p>
         </div>
         <hr/>
         <div className="agent-chat">
@@ -145,7 +173,7 @@ class ClientChatroom extends React.Component{
         </div>
         <div className="agent-input">
           <form onSubmit={this.handleSubmit}>
-            <textarea rows="6"
+            <textarea rows="7"
                       onChange={this.handleUpdate("message")}
                       onKeyPress={this.handleKeyPress}
                       value={this.state.message}

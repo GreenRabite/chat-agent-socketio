@@ -12,10 +12,10 @@ class Dashboard extends React.Component{
            message: '',
            messages: [],
            clients: {},
-           colors: ['#3D9CC4', '#24659A', '#98C3E7', '#D5E6F4',
-                    '#CB6080', '#A33B5A', '#E098AE', '#F7E2E8',
-                    '#966AB8', '#6E3A96', '#B188D1', '#EAE0F2',
-                    '#0AA693', '#06786A', '#55C4B6', '#B7EAE3']
+           colors: ['#3D9CC4', '#24659A', '#98C3E7',
+                    '#CB6080', '#A33B5A', '#E098AE',
+                    '#966AB8', '#6E3A96', '#B188D1',
+                    '#0AA693', '#06786A', '#55C4B6']
          };
   }
 
