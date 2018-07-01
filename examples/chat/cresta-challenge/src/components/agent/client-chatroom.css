@@ -73,6 +73,44 @@
 .bubble-left {
   border-radius: 1px 15px 15px 1px; }
 
+.speech-bubble-container {
+  position: relative; }
+
+.speech-bubble {
+  position: absolute;
+  background: #D5E6F4;
+  border-radius: .4em;
+  height: auto;
+  margin-bottom: 20px;
+  opacity: 0.95;
+  top: 0;
+  right: 0;
+  margin-top: -130px;
+  margin-right: 20px;
+  padding: 12px; }
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 18px solid transparent;
+  border-top-color: #D5E6F4;
+  border-bottom: 0;
+  border-left: 0;
+  margin-left: -9px;
+  margin-bottom: -18px;
+  opacity: 0.75; }
+
+.flex {
+  display: flex;
+  flex-direction: column; }
+
+.hidden {
+  display: none; }
+
 ::-webkit-scrollbar {
   width: 0px;
   /* remove scrollbar space */

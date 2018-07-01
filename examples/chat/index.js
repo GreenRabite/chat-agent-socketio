@@ -71,7 +71,9 @@ io.on('connection', (socket) => {
   socket.on('SEND_MESSAGE', function(data){
       console.log("receive");
       console.log(socket.id);
-      io.sockets.in(`${data.room}`).emit('RECEIVE_MESSAGE', data);
+      console.log("Room Id is:",data.room);
+      let roomId = data.room;
+      io.sockets.in(roomId).emit('RECEIVE_MESSAGE', data);
     });
 
   // when the client emits 'add user', this listens and executes

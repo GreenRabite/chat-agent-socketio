@@ -89,12 +89,14 @@ class Login extends Component {
         <h4>AGENT OCCUPIED</h4>
       </div>;
     const clientInfo =
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input type="text"
                  onChange={this.handleUpdate('username')}
                  value={this.state.username}
-                 placeholder="NAME"/>
-          <button onClick={this.handleSubmit}>Submit</button>
+                 placeholder="NAME"
+                 pattern="[A-Za-z0-9]{1,10}"
+                 required/>
+          <button>Submit</button>
         </form>;
 
     if (this.state.role === '' || this.state.role === 'client-pre') {

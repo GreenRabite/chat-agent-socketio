@@ -8,11 +8,6 @@ class Dashboard extends React.Component{
   constructor(props){
     super(props);
     this.socket = this.props.socket;
-    console.log(this.socket.id);
-    console.log("------");
-    this.handleUpdate=this.handleUpdate.bind(this);
-    this.handleSubmit=this.handleSubmit.bind(this);
-    this.addMessage=this.addMessage.bind(this);
     this.state = {
            message: '',
            messages: [],
@@ -37,34 +32,7 @@ class Dashboard extends React.Component{
    });
   }
 
-  addMessage(data){
-    console.log(data);
-    this.setState({messages: [...this.state.messages, data.message]});
-    console.log(this.state.messages);
-  }
-
-  handleUpdate(field){
-    return (e) => {
-      this.setState({
-        [field] : e.target.value
-      });
-    };
-  }
-
-  handleSubmit(e){
-    e.preventDefault();
-    this.socket.emit('SEND_MESSAGE', {
-                message: this.state.message,
-                room: Object.keys(this.state.clients)[0],
-                sender: 'agent'
-            });
-            this.setState({message: ''});
-  }
-
   render(){
-    let messages = this.state.messages.map(message=>{
-      return <li>{`${message}`}</li>;
-      });
     const color = this.state.colors[Math.floor(Math.random()*this.state.colors.length)];
     const chatrooms = [];
     const clients = this.state.clients;
