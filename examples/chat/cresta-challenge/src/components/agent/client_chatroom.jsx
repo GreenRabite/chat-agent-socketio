@@ -14,28 +14,119 @@ class ClientChatroom extends React.Component{
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.setTimer = this.setTimer.bind(this);
+    this.getTimer = this.getTimer.bind(this);
+    this.timeSince = this.timeSince.bind(this);
+    this.timer = 0;
     this.state = {
            username: this.props.username,
            suggestion: true,
            suggestions: [],
            message: '',
-           messages: []
+           messages: [],
+           lastMsgTime: 'N/A',
+           seconds: 0
          };
+    this.getTimer2=this.getTimer2.bind(this);
+
   }
 
   componentDidMount(){
     this.socket.on('RECEIVE_MESSAGE', (data)=>{
            this.addMessage(data);
+           if (data.sender === 'client') {
+             if (this.timer !== 0) {
+               clearInterval(this.timer);
+               this.timer = 0;
+               this.setState({
+                 lastMsgTime: `0s`,
+                 seconds: 0
+               });
+             }else {
+               this.setState({
+                 lastMsgTime: `0s`
+               });
+             }
+             this.getTimer(data);
+           }
        });
+  }
+
+  getTimer2(){
+    const dot = document.querySelector(`#agent-chat-container-${this.props.roomId} .agent-header .dot`);
+    console.log(dot);
+    if (dot !== null) {
+      const timer = setInterval(function(){
+        if(dot.innerText === 'N/A') dot.innerText = 0;
+        if (parseInt(dot.innerText) > 0) {
+
+        }
+        let current = parseInt(dot.innerText);
+        current+=1;
+        dot.innerText = current;
+      },1000);
+    }
   }
 
   addMessage(data){
     console.log(data);
     if (data.room === this.props.roomId) {
       this.setState({
-        messages: this.state.messages.concat([[data.message,data.sender]])
+        messages: this.state.messages.concat([[data.message,
+                                               data.sender,
+                                               data.time ]])
       });
     }
+  }
+
+  getTimer(data){
+    console.log(data);
+    console.log(this.timeSince(data.time));
+    if (this.timer === 0){
+      this.timer = setInterval(()=>{
+        let seconds = this.state.seconds + 1;
+        if (seconds < 60) {
+          this.setState({
+            lastMsgTime: `${seconds}s`,
+            seconds
+          });
+        }else if (seconds > 60 && seconds < 3600) {
+          this.setState({
+            lastMsgTime: `${Math.floor(seconds / 60)}m`,
+            seconds
+          });
+        }else {
+          this.setState({
+            lastMsgTime: `${Math.floor(seconds / 3600)}h`,
+            seconds
+          });
+        }
+      },1000);
+    }
+  }
+
+  timeSince(date) {
+    let seconds = Math.floor((new Date() - date) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    if (interval > 1) {
+      return interval + " years";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+      return interval + " months";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+      return interval + " days";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+      return interval + " hours";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+      return interval + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
   }
 
   handleUpdate(field){
@@ -51,7 +142,8 @@ class ClientChatroom extends React.Component{
     this.socket.emit('SEND_MESSAGE', {
                 message: this.state.message,
                 room: this.props.roomId,
-                sender: 'agent'
+                sender: 'agent',
+                time: Date.now()
             });
     this.setState({message: ''});
     const suggestCon = document.querySelector(`#suggestion-${this.props.roomId}`);
@@ -116,11 +208,8 @@ class ClientChatroom extends React.Component{
     this.setState({
       message: e.target.innerText
     });
-    setTimeout(()=>{
       const input = document.querySelector(`#agent-chat-container-${this.props.roomId} .agent-input textarea`);
-      console.log(input);
       input.focus();
-    },0);
   }
 
   handleFocus(e){
@@ -163,6 +252,7 @@ class ClientChatroom extends React.Component{
            id={`agent-chat-container-${this.props.roomId}`}>
         <div className="agent-header">
           <p id={`agent-${this.props.roomId}`}>{this.props.username}</p>
+          <div class="dot" style={divStyle}>{this.state.lastMsgTime}</div>
         </div>
         <hr/>
         <div className="agent-chat">

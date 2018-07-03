@@ -45,7 +45,8 @@ class ClientDashboard extends React.Component{
     this.socket.emit('SEND_MESSAGE', {
                 message: this.state.message,
                 room: this.socket.id,
-                sender: 'client'
+                sender: 'client',
+                time: Date.now()
             });
             this.setState({message: ''});
   }
