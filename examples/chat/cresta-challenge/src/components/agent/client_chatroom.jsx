@@ -26,14 +26,13 @@ class ClientChatroom extends React.Component{
            lastMsgTime: 'N/A',
            seconds: 0
          };
-    this.getTimer2=this.getTimer2.bind(this);
 
   }
 
   componentDidMount(){
     this.socket.on('RECEIVE_MESSAGE', (data)=>{
            this.addMessage(data);
-           if (data.sender === 'client') {
+           if (data.sender === 'client' && data.room === this.props.roomId) {
              if (this.timer !== 0) {
                clearInterval(this.timer);
                this.timer = 0;
@@ -49,22 +48,6 @@ class ClientChatroom extends React.Component{
              this.getTimer(data);
            }
        });
-  }
-
-  getTimer2(){
-    const dot = document.querySelector(`#agent-chat-container-${this.props.roomId} .agent-header .dot`);
-    console.log(dot);
-    if (dot !== null) {
-      const timer = setInterval(function(){
-        if(dot.innerText === 'N/A') dot.innerText = 0;
-        if (parseInt(dot.innerText) > 0) {
-
-        }
-        let current = parseInt(dot.innerText);
-        current+=1;
-        dot.innerText = current;
-      },1000);
-    }
   }
 
   addMessage(data){
@@ -89,7 +72,7 @@ class ClientChatroom extends React.Component{
             lastMsgTime: `${seconds}s`,
             seconds
           });
-        }else if (seconds > 60 && seconds < 3600) {
+        }else if (seconds >= 60 && seconds < 3600) {
           this.setState({
             lastMsgTime: `${Math.floor(seconds / 60)}m`,
             seconds
@@ -241,6 +224,16 @@ class ClientChatroom extends React.Component{
         return <div className="ag-agent-msg-container"><div className="messages-agent ag-agent-msg" style={divStyle}>{`${message[0]}\n`}</div></div>;
       }
     });
+    let sinceLastMsg;
+    if (this.state.messages.length > 0) {
+      const msgs = this.state.messages;
+      console.log('in the initial loop');
+      if (msgs[msgs.length - 1][1] === 'agent') {
+        console.log("in the message loop");
+        console.log(msgs[msgs.length - 1][1]);
+        sinceLastMsg = <div>{this.timeSince(msgs[msgs.length - 1][2])}</div>;
+      }
+    }
     let speechbubbles = this.state.suggestions.map(suggestion =>{
       return <div className='suggestion-item'
                   onClick={this.handleSuggestion}><span>{suggestion}</span></div>;
@@ -257,6 +250,7 @@ class ClientChatroom extends React.Component{
         <hr/>
         <div className="agent-chat">
           {messages}
+          {sinceLastMsg ? sinceLastMsg : ''}
         </div>
         <div id={`suggestion-${this.props.roomId}`} className='speech-bubble-container hidden'>
           <div className="flex speech-bubble">{speechbubbles}</div>
