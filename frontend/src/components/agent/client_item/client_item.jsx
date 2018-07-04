@@ -18,6 +18,7 @@ class ClientItem extends React.Component{
   handleClick(){
     const input = document.querySelector(`#agent-chat-container-${this.props.roomId} .agent-input textarea`);
     input.focus();
+    input.scrollIntoView();
   }
 
   urgentChatCheck(){

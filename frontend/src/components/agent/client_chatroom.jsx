@@ -74,8 +74,8 @@ class ClientChatroom extends React.Component{
   }
 
   setTimer(){
-    let min = 3;
-    let max = 5;
+    let min = 2;
+    let max = 3;
     const rand = Math.floor(Math.random() * (max - min + 1) + min);
     setTimeout(()=>{
       this.setState({
