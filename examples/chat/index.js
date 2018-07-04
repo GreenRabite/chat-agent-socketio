@@ -47,25 +47,16 @@ io.on('connection', (socket) => {
     io.emit('NewClients',{});
   });
 
-  // Agents use to join room with clients
+  // Agents used to join room with clients
   socket.on('JoinClients', () => {
     console.log("joinclients",clientObj);
     if (Object.keys(clientObj) !== undefined) {
       Object.keys(clientObj).forEach(id => {
-        console.log("Agen joined: Room ID:",id);
+        console.log("Agent joined: Room ID:",id);
         socket.join(id);
       });
       io.emit('ReceiveClients', clientObj);
     }
-  });
-
-  // when the client emits 'new message', this listens and executes
-  socket.on('new message', (data) => {
-    // we tell the client to execute 'new message'
-    socket.broadcast.emit('new message', {
-      username: socket.username,
-      message: data
-    });
   });
 
   socket.on('SEND_MESSAGE', function(data){

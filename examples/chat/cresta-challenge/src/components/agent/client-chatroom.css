@@ -38,6 +38,12 @@ p {
   overflow-x: auto;
   overflow-wrap: break-word; }
 
+.a-last-msg-agent {
+  font-size: 10px;
+  color: #8D8D8D;
+  padding-top: 3px;
+  padding-bottom: 9px; }
+
 .agent-input textarea {
   width: 412px;
   resize: vertical;
@@ -63,7 +69,8 @@ p {
 .ag-client-msg {
   text-align: left;
   margin-left: 10px;
-  border-radius: 15px; }
+  border-radius: 15px;
+  background: #D4D9DF; }
 
 .ag-agent-msg {
   align: right;
@@ -97,6 +104,12 @@ p {
 
 .bubble-left {
   border-radius: 1px 15px 15px 1px; }
+
+.margin-bot-same {
+  margin-bottom: 1px; }
+
+.margin-bot-diff {
+  margin-bottom: 5px; }
 
 .speech-bubble-container {
   position: relative; }
