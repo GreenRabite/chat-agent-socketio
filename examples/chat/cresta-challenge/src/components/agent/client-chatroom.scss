@@ -13,36 +13,6 @@ $off_white : #F9FAFE;
   border: 0;
 }
 
-.agent-header{
-  display: flex;
-  justify-content: space-around;
-  position: relative;
-  margin-bottom: -15px;
-  p{
-    text-transform: uppercase;
-    font-size: 25px;
-  }
-}
-
-.dot{
-  position: absolute;
-  left: 0;
-  margin-top: 15px;
-  margin-left: 15px;
-  height: 34px;
-  width: 34px;
-  font-size: 13px;
-  font-weight: bold;
-  border-radius: 50%;
-  line-height: 34px;
-  text-align: center;
-  color: white;
-}
-
-p {
-  font-weight: 100;
-}
-
 .agent-chat{
   height: 600px;
   overflow-y: scroll;
@@ -74,70 +44,6 @@ p {
   textarea::placeholder{
     color: #8d8d8d;
   }
-}
-
-.ag-client-msg, .ag-agent-msg{
-  display: inline-block;
-  max-width: 362px;
-  padding: 7px 12px 8px 12px;
-  font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05);
-}
-
-.ag-client-msg{
-  text-align: left;
-  margin-left: 10px;
-  border-radius: 15px;
-  background: #D4D9DF;
-}
-.ag-agent-msg{
-  align: right;
-  border-radius: 15px;
-  color: white;
-}
-
-.ag-agent-msg-container{
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 15px;
-}
-
-.ag-client-msg-container{
-  display: flex;
-  justify-content: flex-start;
-  margin-left: 15px;
-}
-
-.bubble-right-up{
-  border-radius: 15px 1px 15px 15px;
-}
-
-.bubble-right-down{
-  border-radius: 15px 15px 1px 15px;
-}
-
-.bubble-right{
-  border-radius: 15px 1px 1px 15px;
-}
-.bubble-left-up{
-  border-radius: 1px 15px 15px 15px;
-}
-
-.bubble-left-down{
-  border-radius: 15px 15px 15px 1px;
-}
-
-.bubble-left{
-  border-radius: 1px 15px 15px 1px;
-}
-
-.margin-bot-same{
-  margin-bottom: 1px;
-}
-
-.margin-bot-diff{
-  margin-bottom: 5px;
 }
 
 .speech-bubble-container{

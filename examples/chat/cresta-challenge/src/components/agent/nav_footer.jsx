@@ -1,23 +1,30 @@
 import React from 'react';
+import ClientItem from './client_item/client_item';
 import './nav-footer.css';
 
 class NavFooter extends React.Component{
   constructor(props){
     super(props);
     this.socket = this.props.socket;
-    this.state = {
-      clients : {}
-    };
   }
 
   render(){
-    let clients = Object.values(this.props.clients).map(client => {
-      return <div className="client-item" key={client}>{client}</div>;
-    });
+    let clients = this.props.clients;
+    let names = [];
+    if (Object.values(clients).length > 0) {
+      for (const roomId in clients) {
+        if (Object.prototype.hasOwnProperty.call(clients,roomId)){
+          names.push(
+            <ClientItem roomId={roomId}
+              username={this.props.clients[roomId]}/>
+          );
+        }
+      }
+    }
     return(
       <div id="nav-footer">
         <h3>Client List</h3>
-        {clients}
+        {names}
       </div>
     );
   }

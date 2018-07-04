@@ -1,5 +1,4 @@
 import React from 'react';
-import ConversationContainer from '../conversation/conversation_container';
 import ClientChatroom from './client_chatroom';
 import NavFooter from './nav_footer';
 import './dashboard.css';
@@ -51,7 +50,7 @@ class Dashboard extends React.Component{
       <div id="dashboard">
         {chatrooms}
         <NavFooter socket={this.socket}
-                    clients={this.state.clients}/>
+                   clients={this.state.clients}/>
       </div>
     );
   }

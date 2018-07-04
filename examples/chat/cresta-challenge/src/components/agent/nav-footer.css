@@ -6,21 +6,10 @@
   width: 200px;
   background: white;
   margin-left: 100px; }
+  #nav-footer h3 {
+    text-align: center; }
 
 #nav-footer:hover {
   margin-left: 0; }
-
-.client-item {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 75px;
-  background-color: #D5E6F4;
-  cursor: pointer; }
-
-.client-item:hover {
-  background-color: #3D9CC4;
-  transition: 0.3s; }
 
 /*# sourceMappingURL=nav-footer.css.map */

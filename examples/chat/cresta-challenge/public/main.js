@@ -1,5 +1,3 @@
-
-
 setInterval(function(){
   let chatboxes = document.querySelectorAll(".client-chat");
 
@@ -15,11 +13,3 @@ setInterval(function(){
     agentbox.scrollTop = agentbox.scrollHeight - agentbox.clientHeight;
   });
 }, 500);
-
-// setInterval(function(){
-//   let messages = document.querySelectorAll(".messages-client");
-//
-//   messages.forEach(message =>{
-//
-//   });
-// }, 500);

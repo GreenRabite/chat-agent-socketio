@@ -1,0 +1,29 @@
+$red : #D43245;
+$yellow : #EAB741;
+$sky_blue : #D5E6F4;
+$teal_blue : #3D9CC4;
+
+.client-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+  background-color: $sky_blue;
+  cursor: pointer;
+}
+
+.client-item:hover{
+  background-color: $teal_blue;
+  transition: 0.3s;
+}
+
+.red-chat{
+  transition: 0.3s;
+  background-color: $red;
+}
+
+.yellow-chat{
+  transition: 0.3s;
+  background-color: $yellow;
+}

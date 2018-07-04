@@ -1,0 +1,27 @@
+.agent-header {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin-bottom: -15px; }
+  .agent-header p {
+    text-transform: uppercase;
+    font-size: 25px; }
+
+.dot {
+  position: absolute;
+  left: 0;
+  margin-top: 15px;
+  margin-left: 15px;
+  height: 34px;
+  width: 34px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 50%;
+  line-height: 34px;
+  text-align: center;
+  color: white; }
+
+p {
+  font-weight: 100; }
+
+/*# sourceMappingURL=chat-header.css.map */
