@@ -12,7 +12,6 @@ class ClientItem extends React.Component{
 
   componentDidMount(){
     this.urgentChatCheck();
-    console.log('mounted');
   }
 
   handleClick(){
@@ -22,13 +21,10 @@ class ClientItem extends React.Component{
   }
 
   urgentChatCheck(){
-    console.log("working");
     if (this.timer === 0) {
       this.timer = setInterval(()=>{
-        console.log('in the loop');
         const dot = document.querySelector(`#agent-chat-container-${this.props.roomId} .agent-header .dot`);
         const clientItem = document.querySelector(`#client-item-${this.props.roomId}`);
-        console.log(dot);
         if (dot && dot.innerText[dot.innerText.length -1] === 's') {
           let value = parseInt(dot.innerText.slice(0,dot.innerText.length -1));
           if (value < 30) {

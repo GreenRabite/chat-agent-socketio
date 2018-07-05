@@ -95,9 +95,9 @@ class ChatBody extends React.Component{
     };
     let messages = this.props.messages.map(message=>{
       if (message[1] === 'client') {
-        return <div className='ag-client-msg-container'><div className="messages-agent ag-client-msg" style={{backgound:"white"}}>{`${message[0]}\n`} </div></div>;
+        return <div className='ag-client-msg-container'><div className="messages-agent ag-client-msg" key={message[2]} style={{backgound:"white"}}>{`${message[0]}\n`} </div></div>;
       }else {
-        return <div className="ag-agent-msg-container"><div className="messages-agent ag-agent-msg" style={divStyle}>{`${message[0]}\n`}</div></div>;
+        return <div className="ag-agent-msg-container"><div className="messages-agent ag-agent-msg" key={message[2]} style={divStyle}>{`${message[0]}\n`}</div></div>;
       }
     });
     let sinceLastMsg;

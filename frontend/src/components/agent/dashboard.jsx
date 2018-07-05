@@ -1,6 +1,7 @@
 import React from 'react';
 import ClientChatroom from './client_chatroom';
 import NavFooter from './nav_footer';
+import AgentConsole from './agent_console/agent_console';
 import './dashboard.css';
 
 class Dashboard extends React.Component{
@@ -32,7 +33,6 @@ class Dashboard extends React.Component{
   }
 
   render(){
-    const color = this.state.colors[Math.floor(Math.random()*this.state.colors.length)];
     const chatrooms = [];
     const clients = this.state.clients;
     for(const roomId in clients){
@@ -42,12 +42,14 @@ class Dashboard extends React.Component{
                           roomId={roomId}
                           username={this.state.clients[roomId]}
                           color={this.state.colors[Math.floor(
-                                  Math.random()*this.state.colors.length)]}/>
+                                  Math.random()*this.state.colors.length)]}
+                          key={roomId}/>
         );
       }
     }
     return(
       <div id="dashboard">
+        <AgentConsole />
         {chatrooms}
         <NavFooter socket={this.socket}
                    clients={this.state.clients}/>

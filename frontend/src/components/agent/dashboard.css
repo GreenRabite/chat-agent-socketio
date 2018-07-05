@@ -6,4 +6,120 @@
   margin-right: 210px;
   margin-top: 80px; }
 
+#agent-console {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-top: 20px;
+  margin-right: 250px;
+  display: flex;
+  justify-content: space-between;
+  width: 450px; }
+
+#counter-container {
+  background: #F9FAFE;
+  border: 2px solid #A3ABB3;
+  display: flex;
+  width: 250px;
+  height: 20px;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 525;
+  font-family: 'Open Sans', sans-serif;
+  padding: 7px 12px 8px 12px;
+  border-radius: 25px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05); }
+
+.dropdown {
+  background: #F9FAFE;
+  width: 100px;
+  font-size: 14px;
+  height: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 7px 12px 8px 12px;
+  border-radius: 25px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  cursor: pointer; }
+
+.green-border {
+  border: 2px solid #02A626; }
+
+.gray-border {
+  border: 2px solid #A3ABB3; }
+
+.dropdown-menu {
+  display: none;
+  margin-top: 53px;
+  position: absolute;
+  background-color: #F9FAFE;
+  border: 2px solid #A3ABB3;
+  border-radius: 15px; }
+
+.dropdown-item {
+  padding: 7px 12px 8px 12px;
+  width: 100px;
+  text-align: center;
+  border-radius: 15px; }
+
+.status {
+  margin-left: 10px; }
+
+.dot-status {
+  position: absolute;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-top: -2px;
+  line-height: 34px;
+  text-align: center;
+  border: 1px solid #A3ABB3;
+  color: #F9FAFE;
+  background-color: #02A626; }
+
+.dot-status-empty {
+  position: absolute;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-top: -2px;
+  line-height: 34px;
+  text-align: center;
+  border: 1px solid #A3ABB3;
+  color: #F9FAFE;
+  background-color: #F9FAFE; }
+
+.di-top:hover {
+  border-radius: 15px 15px 0 0;
+  background: #E7EDF3;
+  cursor: pointer; }
+
+.di-bottom:hover {
+  border-radius: 0 0 15px 15px;
+  background: #E7EDF3;
+  cursor: pointer; }
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+  flex-direction: column; }
+
+.fas {
+  font-size: 20px; }
+
+.vr {
+  border-right: solid 1px #F9FAFE; }
+
+.bold {
+  font-weight: bold; }
+
 /*# sourceMappingURL=dashboard.css.map */

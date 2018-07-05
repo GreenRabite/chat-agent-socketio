@@ -32,7 +32,6 @@ class ClientChatroom extends React.Component{
   }
 
   addMessage(data){
-    console.log(data);
     if (data.room === this.props.roomId) {
       this.setState({
         messages: this.state.messages.concat([[data.message,
@@ -144,11 +143,9 @@ class ClientChatroom extends React.Component{
   }
 
   render(){
-    const divStyle = {
-      background: this.props.color
-    };
     let speechbubbles = this.state.suggestions.map(suggestion =>{
       return <div className='suggestion-item'
+                  key={suggestion}
                   onClick={this.handleSuggestion}><span>{suggestion}</span></div>;
     });
     return(

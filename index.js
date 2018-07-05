@@ -30,7 +30,9 @@ io.on('connection', (socket) => {
 
   // Login screen, when a user chooses someone
   socket.on('User Chosen', (data) => {
-    if (data.role === 'agent'){ agentArr.push(data.socketId);}
+    if (data.role === 'agent'){
+      agentArr.push(data.socketId);
+    }
     if (data.role === 'client'){ clientObj[data.socketId]=data.username;}
     console.log(agentArr);
     console.log(clientObj);

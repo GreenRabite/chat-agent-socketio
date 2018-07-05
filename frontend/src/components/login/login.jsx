@@ -81,11 +81,11 @@ class Login extends Component {
     const color = this.state.colors[Math.floor(Math.random()*this.state.colors.length)];
     const agentImg = this.state.agent === 0 ?
       <div>
-        <img onClick={(e)=>this.userSelect("agent")} src="https://cdn1.iconfinder.com/data/icons/e-commerce-64/683/ECOMMERCE_Icons_Service-512.png"/>
+        <img onClick={(e)=>this.userSelect("agent")} src="/images/agent.png"  alt=''/>
         <h4>AGENT</h4>
       </div> :
       <div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/ProhibitionSign2.svg/1200px-ProhibitionSign2.svg.png"/>
+        <img src="/images/no-agent.png"  alt=''/>
         <h4>AGENT OCCUPIED</h4>
       </div>;
     const clientInfo =
@@ -94,7 +94,6 @@ class Login extends Component {
                  onChange={this.handleUpdate('username')}
                  value={this.state.username}
                  placeholder="NAME"
-                 pattern="[A-Za-z0-9]{1,10}"
                  required/>
           <button>Submit</button>
         </form>;
@@ -106,7 +105,7 @@ class Login extends Component {
           <div className="avatars">
             {agentImg}
             <div>
-              <img onClick={(e)=>this.userSelect("client-pre")} src="http://www.edubizsoft.com/images/icons/users_with_circle_256.png"/>
+              <img onClick={(e)=>this.userSelect("client-pre")} src="/images/clients.png" alt=''/>
               <h4>CLIENT</h4>
             </div>
           </div>

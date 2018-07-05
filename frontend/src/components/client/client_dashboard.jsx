@@ -61,9 +61,6 @@ class ClientDashboard extends React.Component{
   }
 
   render(){
-    const divStyle = {
-      background: this.props.color
-    };
     return(
       <div className="client-chat-container"
            id={`client-chat-container-${this.props.roomId}`}>

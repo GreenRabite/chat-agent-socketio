@@ -63,7 +63,7 @@ class ChatHeader extends React.Component{
     return(
       <div className="agent-header">
         <p id={`agent-${this.props.roomId}`}>{this.props.username}</p>
-        <div class="dot" style={divStyle}>{this.state.lastMsgTime}</div>
+        <div className="dot" style={divStyle}>{this.state.lastMsgTime}</div>
       </div>
     );
   }

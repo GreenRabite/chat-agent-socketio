@@ -16,7 +16,8 @@ class NavFooter extends React.Component{
         if (Object.prototype.hasOwnProperty.call(clients,roomId)){
           names.push(
             <ClientItem roomId={roomId}
-              username={this.props.clients[roomId]}/>
+              username={this.props.clients[roomId]}
+              key={roomId}/>
           );
         }
       }
