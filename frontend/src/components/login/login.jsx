@@ -21,7 +21,7 @@ class Login extends Component {
   }
 
   componentDidMount(){
-    this.socket = io('localhost:3000');
+    this.socket = io('localhost:3001');
     this.socket.on("Receive User Count", (data)=>{
       console.log(data);
       this.setState({

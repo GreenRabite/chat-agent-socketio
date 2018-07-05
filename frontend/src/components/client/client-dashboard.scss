@@ -34,7 +34,7 @@ $off_white : #F9FAFE;
 
 .client-input{
   textarea{
-    width: 412px;
+    width: 414px;
     resize: vertical;
     border: 2px solid #E7EDF3;
     background: $off_white;
@@ -62,6 +62,7 @@ $off_white : #F9FAFE;
   text-align: left;
   margin-left: 10px;
   border-radius: 15px;
+  background-color: #D4D9DF;
 }
 .client-msg{
   align: right;

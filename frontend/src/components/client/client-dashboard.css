@@ -24,10 +24,18 @@
   overflow-wrap: break-word; }
 
 .client-input textarea {
-  width: 444px;
+  width: 414px;
   resize: vertical;
-  border: none;
-  background: #F9FAFE; }
+  border: 2px solid #E7EDF3;
+  background: #F9FAFE;
+  border: 2px solid #E7EDF3;
+  border-radius: 15px 15px 0 0;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 15px;
+  color: #141414; }
+.client-input textarea::placeholder {
+  color: #8d8d8d; }
 
 .client-msg, .agent-msg {
   display: inline-block;
@@ -40,7 +48,8 @@
 .agent-msg {
   text-align: left;
   margin-left: 10px;
-  border-radius: 15px; }
+  border-radius: 15px;
+  background-color: #D4D9DF; }
 
 .client-msg {
   align: right;

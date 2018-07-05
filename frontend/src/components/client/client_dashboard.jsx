@@ -1,4 +1,5 @@
 import React from 'react';
+import CustomerChatBody from './customer_chat_body/customer_chat_body';
 import './client-dashboard.css';
 
 class ClientDashboard extends React.Component{
@@ -28,7 +29,9 @@ class ClientDashboard extends React.Component{
   addMessage(data){
     console.log(data);
     this.setState({
-      messages: this.state.messages.concat([[data.message,data.sender]])
+      messages: this.state.messages.concat([[data.message,
+                                             data.sender,
+                                             data.time ]])
     });
   }
 
@@ -61,25 +64,19 @@ class ClientDashboard extends React.Component{
     const divStyle = {
       background: this.props.color
     };
-    let messages = this.state.messages.map(message=>{
-      if (message[1] === 'client') {
-        return <div className="client-msg-container"><div className="messages-client client-msg" style={divStyle}>{`${message[0]}\n`}</div></div>;
-      }else {
-        return <div className="agent-msg-container"><div className="messages-client agent-msg" style={{backgound:"white"}}>{`${message[0]}\n`}</div></div>;
-      }
-    });
     return(
-      <div className="client-chat-container">
+      <div className="client-chat-container"
+           id={`client-chat-container-${this.props.roomId}`}>
         <div className="client-header">
           <p>AGENT</p>
         </div>
         <hr/>
-        <div className="client-chat">
-          {messages}
-        </div>
+        <CustomerChatBody color = {this.props.color}
+                          roomId = {this.props.roomId}
+                          messages = {this.state.messages}/>
         <div className="client-input">
           <form onSubmit={this.handleSubmit}>
-            <textarea rows="6"
+            <textarea rows="7"
                       onChange={this.handleUpdate("message")}
                       onKeyPress={this.handleKeyPress}
                       value={this.state.message}
