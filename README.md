@@ -1,25 +1,26 @@
 
-# Socket.IO Chat
+# Agent/Client Chat App Using Socket.IO
 
-A simple chat demo for socket.io
+Chat demo created with socket.io and React.js
 
 ## How to use
 
 ```
-$ cd socket.io
+$ git clone https://github.com/GreenRabite/chat-agent-socketio.git
+$ cd chat-agent-socketio
 $ npm install
-$ cd examples/chat
+$ npm start
+$ cd frontend
 $ npm install
 $ npm start
 ```
 
-And point your browser to `http://localhost:3000`. Optionally, specify
-a port by supplying the `PORT` env variable.
+And point your browser to `http://localhost:3000`. Open a new tab at
+`http://localhost:3000` for a another session connected to a socket.
 
 ## Features
 
-- Multiple users can join a chat room by each entering a unique username
-on website load.
-- Users can type chat messages to the chat room.
-- A notification is sent to all users when a user joins or leaves
-the chatroom.
+- One agent can sign in and chat with multiple clients
+- Color coded flags to let the agent know if a new message has arrived
+- `Offline`/`Online` toggle allowing the agent to switch between offline and
+online
