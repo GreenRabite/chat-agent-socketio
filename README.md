@@ -15,6 +15,8 @@ $ npm install
 $ npm start
 ```
 
+[![Video Walkthrough the the App](https://youtu.be/2p53OaUbh8M)](https://youtu.be/2p53OaUbh8M "Video Walkthrough of the App")
+
 And point your browser to `http://localhost:3000`. Open a new tab at
 `http://localhost:3000` for a another session connected to a socket.
 
