@@ -14,8 +14,9 @@ $ cd frontend
 $ npm install
 $ npm start
 ```
+### Video Walkthrough of the App
 
-[![Video Walkthrough the the App](https://www.img.youtube.com/vi/2p53OaUbh8M.jpg)](https://youtu.be/2p53OaUbh8M "Video Walkthrough of the App")
+[![Video Walkthrough the the App](https://github.com/GreenRabite/chat-agent-socketio/blob/master/frontend/public/images/Screenshot%20from%202018-07-05%2008-22-12.png?raw=true)](https://youtu.be/2p53OaUbh8M "Video Walkthrough of the App")
 
 And point your browser to `http://localhost:3000`. Open a new tab at
 `http://localhost:3000` for a another session connected to a socket.
