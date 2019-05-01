@@ -1,7 +1,7 @@
 
 # Agent/Client Chat App Using Socket.IO
 
-Chat demo created with socket.io and React.js
+Chat demo created with socket.io and React.js. Used for the Cresta Startup Coding Challenege. Message me if any questions. Thanks!
 
 ## How to use
 
